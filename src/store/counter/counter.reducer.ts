@@ -12,9 +12,9 @@ const initialState: CounterState = {
   value: 0,
 };
 
-const increment = createAction<number>(CounterActions.increment);
-const decrement = createAction<number>(CounterActions.decrement);
-const increment_odd = createAction<number>(CounterActions.increment_if_odd);
+const increment = createAction<number>(CounterActions.INCREMENT);
+const decrement = createAction<number>(CounterActions.DECREMENT);
+const increment_odd = createAction<number>(CounterActions.INCREMENT_IF_ODD);
 
 export const counterReducer = createReducer(initialState, (builder) => {
   builder
