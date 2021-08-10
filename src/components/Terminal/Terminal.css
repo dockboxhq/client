@@ -1,13 +1,25 @@
-.terminal-container {
-  /* padding: 0.5rem 1rem; */
-  /* width: 75%; */
-  margin-top: 1rem;
+.terminal-container > div {
+  padding: 0.5rem 1rem;
+  width: 75%;
+  margin: auto;
+  margin-top: 5rem;
+  border-radius: 25px;
 }
 
-/* .xterm-screen {
+.terminal {
   border-radius: 25px;
-} */
+}
+.xterm {
+  border-radius: 25px;
+}
+.xterm-selection-layer {
+  border-radius: 25px;
+}
 
-/* .xterm-viewport {
+.xterm-screen {
   border-radius: 25px;
-} */
+}
+
+.xterm-viewport {
+  border-radius: 25px;
+}
