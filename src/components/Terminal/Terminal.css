@@ -1,25 +1,35 @@
-.terminal-container > div {
-  padding: 0.5rem 1rem;
-  width: 75%;
-  margin: auto;
-  margin-top: 5rem;
-  border-radius: 25px;
+.terminal-container {
+  box-shadow: 0.8rem 0.8rem 0.8rem rgba(0, 0, 0, 0.275);
+  border-radius: 15px;
+  height: 100%;
+  width: 100%;
+  padding-bottom: 1.8rem;
 }
-
+.terminal-main {
+  height: 100%;
+  width: 100%;
+}
 .terminal {
-  border-radius: 25px;
+  padding: 0.5rem 1rem;
+  height: 100%;
 }
-.xterm {
-  border-radius: 25px;
-}
-.xterm-selection-layer {
-  border-radius: 25px;
-}
-
-.xterm-screen {
-  border-radius: 25px;
-}
-
 .xterm-viewport {
+  border-radius: 0px 0px 15px 15px;
+}
+.terminal-close {
+  background-color: #e12727;
+  width: 10px;
+  height: 10px;
   border-radius: 25px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+.terminal-bar {
+  background: #c4c4c4;
+  text-align: center;
+  margin: auto;
+  border-radius: 5px 5px 0px 0px;
+  padding: 2px 0px;
+  height: 30px;
 }
