@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useCallback, useMemo, useEffect } from "react";
+import React, { useLayoutEffect, useRef, useCallback, useMemo, useEffect, useState } from "react";
 import { XTerm } from "xterm-for-react";
 import { FitAddon } from "xterm-addon-fit";
 import { AttachAddon } from "./AttachAddOn";
@@ -9,43 +9,84 @@ import { useAppSelector, useAppDispatch } from "hooks/hooks";
 import { wsConnect, wsDisconnect } from "store/connection/connection.actions";
 import { selectConnectionStatus } from "store/connection/connection.reducer";
 
+import { Rnd } from "react-rnd";
+
+type PositionState = {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+};
+
 export const Terminal = ({ WS_URL }: { WS_URL: string }) => {
   const dispatch = useAppDispatch();
-
   const xtermRef = useRef<XTerm>(null);
 
-  const connectionStatus = useAppSelector(selectConnectionStatus);
-  console.log(connectionStatus);
+  const [posSize, setPosSize] = useState<PositionState>({
+    x: 200,
+    y: 200,
+    width: 700,
+    height: 500,
+  });
 
-  const fitAddon = useMemo(() => new FitAddon(), []);
+  const connectionStatus = useAppSelector(selectConnectionStatus);
+
+  const fitAddon = useMemo(() => {
+    const addon = new FitAddon();
+    if (xtermRef.current == null) return addon;
+    addon.activate(xtermRef.current.terminal);
+    return addon;
+  }, [xtermRef]);
   const onResize = useCallback(
     (event: { cols: number; rows: number } = { cols: 0, rows: 0 }) => {
       fitAddon.fit();
     },
     [fitAddon]
   );
+  onResize();
+
+  // if (websocket != null) onResize();
 
   useEffect(() => {
     dispatch(wsConnect(WS_URL));
   }, [WS_URL, dispatch]);
 
-  useLayoutEffect(() => {
-    window.addEventListener("resize", (ev) => {
-      onResize();
-    });
-  }, [onResize]);
-
-  return (
-    <div>
-      {websocket ? (
-        <XTerm
-          className="terminal-container"
-          ref={xtermRef}
-          onResize={onResize}
-          addons={[fitAddon, new AttachAddon(websocket)]}
-          options={{ theme: { background: "#2E2929" } }}
-        />
-      ) : null}
-    </div>
-  );
+  return websocket ? (
+    <Rnd
+      className="terminal-container"
+      style={
+        {
+          // background: "red",
+        }
+      }
+      size={{
+        width: posSize.width,
+        height: posSize.height,
+      }}
+      position={{
+        x: posSize.x,
+        y: posSize.y,
+      }}
+      minWidth={300}
+      minHeight={100}
+      onDragStop={(e, d) => {
+        setPosSize({ ...posSize, x: d.x, y: d.y });
+      }}
+      cancel=".xterm-cursor-layer"
+      onResize={(e) => onResize()}
+      onResizeStop={(e, direction, ref, delta, position) => {
+        onResize();
+        setPosSize({ ...position, width: ref.offsetWidth, height: ref.offsetHeight });
+      }}>
+      <div className="terminal-close" />
+      <div className="terminal-bar">Hellow</div>
+      <XTerm
+        className="terminal-main"
+        ref={xtermRef}
+        onResize={onResize}
+        addons={[fitAddon, new AttachAddon(websocket)]}
+        options={{ theme: { background: "#2E2929" } }}
+      />
+    </Rnd>
+  ) : null;
 };
