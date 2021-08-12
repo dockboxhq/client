@@ -1,0 +1,19 @@
+.logo {
+  position: relative;
+  height: 35px;
+  text-align: center;
+  margin: 0;
+  margin-left: 1rem;
+  bottom: 10px;
+  /* margin-bottom: 5px; */
+}
+
+.logo-text {
+  position: relative;
+  margin: 0;
+  margin-left: 15px;
+  font-size: 30px;
+  bottom: 5px;
+
+  font-family: "Montserrat Alternates", sans-serif;
+}

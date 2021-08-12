@@ -18,13 +18,13 @@ type PositionState = {
   height: number;
 };
 
-export const Terminal = ({ WS_URL }: { WS_URL: string }) => {
+export const Terminal = ({ WS_URL, style }: { WS_URL: string; style?: any }) => {
   const dispatch = useAppDispatch();
   const xtermRef = useRef<XTerm>(null);
 
   const [posSize, setPosSize] = useState<PositionState>({
-    x: 200,
-    y: 200,
+    x: 450,
+    y: 100,
     width: 700,
     height: 500,
   });
@@ -54,11 +54,7 @@ export const Terminal = ({ WS_URL }: { WS_URL: string }) => {
   return websocket ? (
     <Rnd
       className="terminal-container"
-      style={
-        {
-          // background: "red",
-        }
-      }
+      style={style}
       size={{
         width: posSize.width,
         height: posSize.height,
