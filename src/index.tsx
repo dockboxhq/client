@@ -6,6 +6,12 @@ import { store } from "./store";
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "assets/scss/custom.scss";
+import axios from "axios";
+
+axios.defaults.baseURL = "http://localhost:8000/v1";
+// axios.defaults.headers.common["Authorization"] = "AUTH TOKEN";
+axios.defaults.headers.post["Content-Type"] = "application/json";
 
 ReactDOM.render(
   <React.StrictMode>

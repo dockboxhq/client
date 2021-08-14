@@ -1,15 +1,16 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import { ConnectionState, connectionReducer } from "./connection/connection.reducer";
-import { counterReducer, CounterState } from "./counter/counter.reducer";
-
+import { ModalState, modalReducer } from "./ui/modal.reducer";
+import { DockboxState, dockboxReducer } from "./dockbox/dockbox.reducer";
 export interface State {
-  counter: CounterState;
   connection: ConnectionState;
+  modalState: ModalState;
+  dockbox: DockboxState;
 }
 
 export const rootReducer = combineReducers<State>({
   // always return a new object for the root state
-  // the value of `state.todos` is whatever the todos reducer returns
-  counter: counterReducer,
   connection: connectionReducer,
+  modalState: modalReducer,
+  dockbox: dockboxReducer,
 });

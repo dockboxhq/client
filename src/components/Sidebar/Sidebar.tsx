@@ -1,7 +1,16 @@
-import "./Sidebar.css";
+import "./Sidebar.scss";
 import React, { useState } from "react";
 import { Rnd } from "react-rnd";
-import TextField from "components/TextField/TextField";
+import CopyUrl from "./CopyUrl/CopyUrl";
+import styled from "styled-components";
+import FileTree from "components/FileTree/FileTree";
+const Divider = styled.div`
+  height: 2px;
+  width: 65%;
+  margin: auto;
+  margin-top: 1rem;
+  background: gray;
+`;
 const Sidebar = () => {
   const [width, setWidth] = useState(350);
   return (
@@ -21,8 +30,9 @@ const Sidebar = () => {
       onResizeStop={(e, direction, ref, delta, position) => {
         setWidth(ref.offsetWidth);
       }}>
-      <TextField>Yes</TextField>
-      <div style={{ background: "red" }}>Srihari</div>
+      <CopyUrl className="mt-3" />
+      <Divider />
+      <FileTree />
     </Rnd>
   );
 };
