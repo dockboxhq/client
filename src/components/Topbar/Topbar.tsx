@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from "reactstrap";
+import { Button, Navbar, NavbarBrand } from "reactstrap";
 import logo from "assets/brand.svg";
-import "./Topbar.css";
-const Topbar = (props: any) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggle = () => setIsOpen(!isOpen);
-
+import "./Topbar.scss";
+import { useAppDispatch } from "hooks/hooks";
+import { openModal } from "store/ui/modal.actions";
+import { ModalType } from "store/ui/modal.reducer";
+const Topbar = ({ onCreate = () => {} }) => {
+  const dispatch = useAppDispatch();
+  const onCreateClicked = () => {
+    dispatch(openModal(ModalType.CREATE_DOCKBOX));
+  };
   return (
     <div>
       <Navbar dark className="navbar" style={{ background: "#436BDF", zIndex: 2, height: "60px" }}>
@@ -14,6 +17,14 @@ const Topbar = (props: any) => {
           <img src={logo} className="logo" alt="logo" />
           <span className="logo-text">dockbox</span>
         </NavbarBrand>
+        <Button
+          color="green"
+          outline={false}
+          className="mb-2 me-3"
+          style={{ color: "white" }}
+          onClick={onCreateClicked}>
+          Create
+        </Button>
       </Navbar>
     </div>
     // <nav style={{ background: "#436BDF", zIndex: 2, height: "60px" }}>

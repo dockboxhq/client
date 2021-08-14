@@ -1,10 +1,10 @@
-import React, { useLayoutEffect, useRef, useCallback, useMemo, useEffect, useState } from "react";
+import React, { useRef, useCallback, useMemo, useEffect, useState } from "react";
 import { XTerm } from "xterm-for-react";
 import { FitAddon } from "xterm-addon-fit";
 import { AttachAddon } from "./AttachAddOn";
 import { websocket } from "services/socket";
 
-import "./Terminal.css";
+import "./Terminal.scss";
 import { useAppSelector, useAppDispatch } from "hooks/hooks";
 import { wsConnect, wsDisconnect } from "store/connection/connection.actions";
 import { selectConnectionStatus } from "store/connection/connection.reducer";
@@ -18,7 +18,7 @@ type PositionState = {
   height: number;
 };
 
-export const Terminal = ({ WS_URL, style }: { WS_URL: string; style?: any }) => {
+export const Terminal = ({ style }: { style?: any }) => {
   const dispatch = useAppDispatch();
   const xtermRef = useRef<XTerm>(null);
 
@@ -47,9 +47,9 @@ export const Terminal = ({ WS_URL, style }: { WS_URL: string; style?: any }) => 
 
   // if (websocket != null) onResize();
 
-  useEffect(() => {
-    dispatch(wsConnect(WS_URL));
-  }, [WS_URL, dispatch]);
+  // useEffect(() => {
+  //   dispatch(wsConnect(WS_URL));
+  // }, [WS_URL, dispatch]);
 
   return websocket ? (
     <Rnd
