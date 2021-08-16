@@ -1,0 +1,12 @@
+@import "../../../assets/scss/custom.scss";
+
+.copy-container {
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+@include media-breakpoint-down(md) {
+  .copy-container {
+    flex-direction: column;
+  }
+}

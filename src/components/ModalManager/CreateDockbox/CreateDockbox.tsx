@@ -1,4 +1,4 @@
-import TextField from "components/TextField/TextField";
+import { TextField, StyledText } from "components/Common/common";
 import { Modal, Button, Spinner } from "reactstrap";
 import styled from "styled-components";
 import { useState } from "react";
@@ -7,14 +7,7 @@ import "../Modal.scss";
 import { useAppDispatch, useAppSelector } from "hooks/hooks";
 import { createDockbox } from "store/dockbox/dockbox.actions";
 import { selectDockboxLoading } from "store/dockbox/dockbox.reducer";
-import { createDockboxAPI } from "api/dockboxAPI";
 
-const StyledText = styled.div`
-  font-family: Montserrat Alternates;
-  font-size: 2rem;
-  color: white;
-  text-align: center;
-`;
 const CreateDockboxModal = ({ isOpen, close }: { isOpen: boolean; close: () => void }) => {
   const [url, setURL] = useState("");
   const dispatch = useAppDispatch();

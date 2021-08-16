@@ -11,12 +11,14 @@ let host: string | null = null;
 const onOpen = (store: MiddlewareAPI<RootState>) => (event: Event) => {
   store.dispatch(actions.wsConnected(host ? host : "Host not found"));
   websocket?.send("\r");
-  toast.success("Connected to environment!");
+  if (websocket != null) {
+    toast.success("Connected to environment!");
+  }
 };
 
 const onClose = (store: MiddlewareAPI<RootState>) => (event: CloseEvent) => {
   store.dispatch(actions.wsDisconnected(host ? host : "Host not found"));
-  toast.error("Connection lost");
+  if (!event.wasClean || event.code !== 1000) toast.error("Connection lost");
 };
 
 const onError = (store: MiddlewareAPI<RootState>) => (event: Event) => {
@@ -32,7 +34,7 @@ export const socketMiddleware: Middleware<
     case ConnectionActions.CONNECT:
       if (websocket !== null) {
         if (action.payload.host === host) break;
-        websocket.close();
+        websocket.close(1000);
         host = null;
       }
       host = action.payload.host;
@@ -46,7 +48,7 @@ export const socketMiddleware: Middleware<
     case ConnectionActions.DISCONNECT:
       if (websocket !== null) {
         api.dispatch(actions.wsDisconnecting());
-        websocket.close();
+        websocket.close(1000);
       }
       host = null;
       websocket = null;

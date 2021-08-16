@@ -2,15 +2,9 @@ import "./Sidebar.scss";
 import React, { useState } from "react";
 import { Rnd } from "react-rnd";
 import CopyUrl from "./CopyUrl/CopyUrl";
-import styled from "styled-components";
+import { Divider } from "components/Common/common";
 import FileTree from "components/FileTree/FileTree";
-const Divider = styled.div`
-  height: 2px;
-  width: 65%;
-  margin: auto;
-  margin-top: 1rem;
-  background: gray;
-`;
+
 const Sidebar = () => {
   const [width, setWidth] = useState(350);
   return (

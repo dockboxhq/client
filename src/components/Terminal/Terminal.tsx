@@ -1,12 +1,10 @@
-import React, { useRef, useCallback, useMemo, useEffect, useState } from "react";
+import React, { useRef, useCallback, useMemo, useLayoutEffect, useState } from "react";
 import { XTerm } from "xterm-for-react";
 import { FitAddon } from "xterm-addon-fit";
 import { AttachAddon } from "./AttachAddOn";
-import { websocket } from "services/socket";
 
 import "./Terminal.scss";
-import { useAppSelector, useAppDispatch } from "hooks/hooks";
-import { wsConnect, wsDisconnect } from "store/connection/connection.actions";
+import { useAppSelector } from "hooks/hooks";
 import { selectConnectionStatus } from "store/connection/connection.reducer";
 
 import { Rnd } from "react-rnd";
@@ -18,8 +16,7 @@ type PositionState = {
   height: number;
 };
 
-export const Terminal = ({ style }: { style?: any }) => {
-  const dispatch = useAppDispatch();
+const Terminal = ({ style, websocket, id }: { style?: any; websocket: WebSocket; id: string }) => {
   const xtermRef = useRef<XTerm>(null);
 
   const [posSize, setPosSize] = useState<PositionState>({
@@ -43,7 +40,10 @@ export const Terminal = ({ style }: { style?: any }) => {
     },
     [fitAddon]
   );
-  onResize();
+
+  useLayoutEffect(() => {
+    onResize();
+  }, [onResize]);
 
   // if (websocket != null) onResize();
 
@@ -86,3 +86,5 @@ export const Terminal = ({ style }: { style?: any }) => {
     </Rnd>
   ) : null;
 };
+
+export default React.memo(Terminal);

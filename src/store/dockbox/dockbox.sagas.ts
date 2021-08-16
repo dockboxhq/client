@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import { put, all, takeLatest, call } from "redux-saga/effects";
 
 import { ResponseGenerator } from "store/common/common";
-import { wsConnect } from "store/connection/connection.actions";
 import {
   DockboxActions,
   createDockboxError,
@@ -12,6 +11,7 @@ import {
 } from "store/dockbox/dockbox.actions";
 import { closeModal } from "store/ui/modal.actions";
 import { getResponseError } from "utils/errors";
+import { push } from "connected-react-router";
 
 function* createDockboxSaga(action: PayloadAction<any>) {
   try {
@@ -19,9 +19,8 @@ function* createDockboxSaga(action: PayloadAction<any>) {
     yield put(createDockboxSuccess(responseData.data.message));
     toast.success(responseData.data.message);
     yield put(closeModal());
-    const host = `ws://localhost:8000/v1/ws/${responseData.data.id}`;
-
-    yield put(wsConnect(host));
+    const dockboxID = responseData.data.id;
+    yield put(push(`/${dockboxID}`));
   } catch (err) {
     console.log(err);
     toast.error(getResponseError(err));
