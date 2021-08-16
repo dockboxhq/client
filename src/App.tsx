@@ -8,6 +8,8 @@ import { Switch, Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "store/index";
 import Playground from "views/Playground/PlaygroundPage";
+import Home from "views/Home/HomePage";
+import { StyledText } from "components/Common/common";
 
 function App() {
   return (
@@ -16,7 +18,7 @@ function App() {
       <div className="main-content">
         <Switch>
           <Route path="/:id" render={({ match }) => <Playground key={match.params.id || ""} />} />
-          <Route path="/" component={() => <div>Not Connected</div>} />
+          <Route path="/" component={Home} />
         </Switch>
       </div>
       <ModalManager />

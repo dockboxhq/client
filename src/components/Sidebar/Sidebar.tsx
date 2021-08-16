@@ -5,8 +5,13 @@ import CopyUrl from "./CopyUrl/CopyUrl";
 import { Divider } from "components/Common/common";
 import FileTree from "components/FileTree/FileTree";
 
-const Sidebar = () => {
+const Sidebar = ({ onResize }: { onResize?: (width: number) => void }) => {
   const [width, setWidth] = useState(350);
+
+  const updateWidth = (newWidth: number) => {
+    setWidth(newWidth);
+    onResize && onResize(newWidth);
+  };
   return (
     <Rnd
       className="sidebar"
@@ -21,8 +26,11 @@ const Sidebar = () => {
       maxWidth={"50%"}
       minHeight={"100%"}
       maxHeight={"100%"}
+      onResize={(e, dir, ref) => {
+        onResize && onResize(ref.offsetWidth);
+      }}
       onResizeStop={(e, direction, ref, delta, position) => {
-        setWidth(ref.offsetWidth);
+        updateWidth(ref.offsetWidth);
       }}>
       <CopyUrl className="mt-3" />
       <Divider />
