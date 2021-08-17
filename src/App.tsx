@@ -9,7 +9,6 @@ import { ConnectedRouter } from "connected-react-router";
 import { history } from "store/index";
 import Playground from "views/Playground/PlaygroundPage";
 import Home from "views/Home/HomePage";
-import { StyledText } from "components/Common/common";
 
 function App() {
   return (

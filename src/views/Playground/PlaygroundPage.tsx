@@ -7,6 +7,7 @@ import { useParams } from "react-router";
 import { useCallback, useEffect } from "react";
 import { wsConnect } from "store/connection/connection.actions";
 import { Spinner } from "reactstrap";
+import { getDockboxAPIWSURL } from "api/dockboxAPI";
 
 const Playground = () => {
   const connectionStatus = useAppSelector<ConnectionEnum>(selectConnectionStatus);
@@ -15,7 +16,7 @@ const Playground = () => {
   // const { height, width } = useWindowDimensions();
 
   useEffect(() => {
-    const host = `ws://localhost:8000/v1/dockbox/ws/${id}`;
+    const host = getDockboxAPIWSURL({ id });
     dispatch(wsConnect(host));
   }, [dispatch, id, connectionStatus]);
 

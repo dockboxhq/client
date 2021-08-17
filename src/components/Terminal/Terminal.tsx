@@ -45,12 +45,6 @@ const Terminal = ({ style, websocket, id }: { style?: any; websocket: WebSocket;
     onResize();
   }, [onResize]);
 
-  // if (websocket != null) onResize();
-
-  // useEffect(() => {
-  //   dispatch(wsConnect(WS_URL));
-  // }, [WS_URL, dispatch]);
-
   return websocket ? (
     <Rnd
       className="terminal-container"

@@ -8,8 +8,9 @@ import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "assets/scss/custom.scss";
 import axios from "axios";
+import { API_URL } from "utils/config";
 
-axios.defaults.baseURL = "http://localhost:8000/v1";
+axios.defaults.baseURL = API_URL;
 // axios.defaults.headers.common["Authorization"] = "AUTH TOKEN";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
