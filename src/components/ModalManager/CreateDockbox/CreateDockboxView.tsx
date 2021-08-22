@@ -6,7 +6,13 @@ import { selectDockboxLoading } from "store/dockbox/dockbox.reducer";
 import { createDockbox } from "store/dockbox/dockbox.actions";
 import { toast } from "react-toastify";
 
-const CreateDockboxView = () => {
+const CreateDockboxView = ({
+  title = "Create dockbox",
+  color = "white",
+}: {
+  title?: string;
+  color?: string;
+}) => {
   const [url, setURL] = useState("");
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectDockboxLoading);
@@ -33,7 +39,9 @@ const CreateDockboxView = () => {
   };
   return (
     <>
-      <StyledText className="mt-2 p-1">Create dockbox</StyledText>
+      <StyledText className="mt-1" color={color}>
+        {title}
+      </StyledText>
       <div className="d-flex flex-row p-2 m-3">
         <TextField
           disabled={isLoading}
@@ -42,6 +50,7 @@ const CreateDockboxView = () => {
           type="url"
           value={url}
           onChange={onChange}
+          style={{ border: "1px solid", borderColor: "lightgray" }}
         />
 
         <Button color={isLoading ? "secondary" : "primary"} onClick={onClickCreate}>

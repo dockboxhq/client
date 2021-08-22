@@ -4,7 +4,7 @@ import { Button } from "reactstrap";
 export const StyledText = styled.div`
   font-family: Montserrat Alternates;
   font-size: 2rem;
-  color: white;
+  color: ${(props) => props.color};
   text-align: center;
 `;
 
@@ -48,7 +48,7 @@ export const TextField = styled.input`
   border: none;
   max-width: 30rem;
   color: #505050;
-  font-family: "Montserrat Alternates";
+  font-family: Montserrat Alternates;
   &:disabled {
     background: darkgray;
   }
