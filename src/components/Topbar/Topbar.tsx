@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Navbar, NavbarBrand } from "reactstrap";
-import logo from "assets/brand.svg";
+import logo from "assets/img/brand.svg";
 import "./Topbar.scss";
 import { useAppDispatch } from "hooks/hooks";
 import { openModal } from "store/ui/modal.actions";

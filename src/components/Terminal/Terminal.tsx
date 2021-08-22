@@ -69,7 +69,7 @@ const Terminal = ({ style, websocket, id }: { style?: any; websocket: WebSocket;
         setPosSize({ ...position, width: ref.offsetWidth, height: ref.offsetHeight });
       }}>
       <div className="terminal-close" />
-      <div className="terminal-bar">Hellow</div>
+      <div className="terminal-bar">Hello</div>
       <XTerm
         className="terminal-main"
         ref={xtermRef}

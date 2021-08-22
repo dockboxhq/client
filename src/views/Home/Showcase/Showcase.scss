@@ -1,0 +1,47 @@
+@import "../../../assets/scss/custom.scss";
+
+.showcase {
+  background-color: #383838;
+  min-height: 300px;
+  display: inline-block;
+  border-radius: 25px;
+  padding: 1rem;
+  width: 80%;
+  min-width: 800px;
+  max-width: 1000px;
+  display: flex;
+  margin: auto;
+  margin-top: 2rem;
+  flex-direction: row;
+  gap: 2rem;
+  font-family: Montserrat Alternates;
+}
+
+.showcase-card {
+  flex: 1;
+  margin: 2rem;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.showcase-image {
+  aspect-ratio: 1/1;
+  border-radius: 25px;
+  display: block;
+  margin: auto;
+  color: black;
+  margin-bottom: 0.8rem;
+  padding: 1rem;
+}
+
+@include media-breakpoint-down(sm) {
+  .showcase {
+    flex-direction: column;
+    min-width: 80%;
+    min-height: none;
+    max-width: 100px;
+    gap: 1rem;
+    padding: 0;
+    margin-top: 0.6rem;
+  }
+}
