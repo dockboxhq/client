@@ -4,7 +4,9 @@
 This is the React client for dockbox. The production version is available at https://dockbox.ca
 
 <img width="1440" alt="Screen Shot 2021-08-24 at 3 08 10 AM" src="https://user-images.githubusercontent.com/37857112/130573271-4f39fb91-3955-4e72-ae47-eae2a91e3659.png">
-<img width="1440" alt="Screen Shot 2021-08-24 at 3 09 27 AM" src="https://user-images.githubusercontent.com/37857112/130573300-1bce76db-b456-416b-bfa1-47cbe21244ce.png">
+
+<img width="1440" alt="Screen Shot 2021-08-24 at 3 19 14 AM" src="https://user-images.githubusercontent.com/37857112/130573972-0961faa1-67ab-4c67-a532-cfbc61c2554a.png">
+
 
 
 ## Setup
