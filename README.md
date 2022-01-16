@@ -1,7 +1,7 @@
 
 # dockbox Client
 
-This is the React client for dockbox. The production version is available at https://dockbox.ca
+This is the React client for dockbox. The production version was available at https://dockbox.ca, but has been taken down. Please run the setup locally.
 
 <img width="1440" alt="Screen Shot 2021-08-24 at 3 08 10 AM" src="https://user-images.githubusercontent.com/37857112/130573271-4f39fb91-3955-4e72-ae47-eae2a91e3659.png">
 
